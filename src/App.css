@@ -1,0 +1,476 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.4s, color 0.4s, transform 0.3s ease, opacity 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* App Container */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: white;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  padding-top: 1rem;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.sidebar.open {
+  width: 70px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  background-color: #f8f9fa;
+}
+
+.sidebar-header h2 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.menu-items {
+  list-style: none;
+  padding: 1rem 0;
+}
+
+.menu-items li {
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.menu-items li:hover {
+  background-color: #f0f0f0;
+  transform: translateX(5px);
+}
+
+.menu-items li a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 2rem;
+  transition: margin-left 0.4s ease;
+  flex: 1;
+}
+
+/* Animasi Halaman */
+.page-transition {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Home */
+.home-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.home-content {
+  text-align: center;
+  background: white;
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid #ecf0f1;
+}
+
+.home-content h1 {
+  font-size: 2.5rem;
+  color: #3498db;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+}
+
+.quote {
+  font-style: italic;
+  color: #7f8c8d;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.home-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tanggal Picker */
+.tanggal-picker {
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #ecf0f1;
+}
+
+.tanggal-picker label {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.tanggal-picker input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.tanggal-picker input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Form Tambah Siswa & Area (Kotak) */
+.add-student-form {
+  margin: 1.5rem 0;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ecf0f1;
+}
+
+.add-student-form h3 {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  color: #2c3e50;
+  font-size: 1.3rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+  background-color: #fafafa;
+}
+
+.form-group input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  outline: none;
+  background-color: white;
+}
+
+.btn-add {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add:hover {
+  background-color: #2ecc71;
+  transform: translateY(-1px);
+}
+
+/* Tabel Piket */
+.absensi-section {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  overflow: hidden;
+  border: 1px solid #ecf0f1;
+}
+
+.absensi-section h3 {
+  margin: 0;
+  padding: 1rem;
+  background-color: #3498db;
+  color: white;
+  text-align: center;
+}
+
+/* Header Tanggal */
+.info-date {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: #ecf0f1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  text-align: center;
+  color: #2c3e50;
+  border: 1px solid #bdc3c7;
+}
+
+/* Aksi (Reset & Unduh) */
+.actions {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+  background-color: #f8f9fa;
+  border-top: 1px solid #ecf0f1;
+}
+
+.rekap-btn,
+.reset-btn {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+
+.rekap-btn {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.reset-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.rekap-btn:hover,
+.reset-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Tabel Piket */
+.absensi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.absensi-table th,
+.absensi-table td {
+  padding: 0.8rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.absensi-table th {
+  background-color: #ecf0f1;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Header Area */
+.area-header {
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+.area-header td {
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Status Cell */
+.status-cell {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 0;
+}
+
+.status-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.status-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Warna Status */
+.status-cell.✓ {
+  background-color: #d5f5e3;
+}
+
+.status-cell.✗ {
+  background-color: #fadbd8;
+}
+
+.status-cell.I {
+  background-color: #fef9e7;
+}
+
+.status-cell.S {
+  background-color: #ebdef0;
+}
+
+/* Animasi saat status dipilih */
+.status-btn:active {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .main-content {
+    margin-left: 70px;
+  }
+
+  .sidebar.open {
+    width: 250px;
+  }
+
+  .sidebar-header h2,
+  .menu-items span:not(.menu-toggle),
+  .tanggal-picker label {
+    display: none;
+  }
+
+  .sidebar.open .sidebar-header h2,
+  .sidebar.open .menu-items span,
+  .sidebar.open .tanggal-picker label {
+    display: inline;
+  }
+
+  .absensi-table th,
+  .absensi-table td {
+    padding: 0.6rem 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  .status-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+}
