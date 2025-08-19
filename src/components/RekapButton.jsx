@@ -7,21 +7,16 @@ const RekapButton = ({ students, status, title, date }) => {
     const dateStr = date.toLocaleDateString('id-ID');
 
     const handleExport = () => {
-        const exportData = students.map((s) => {
-            const row = {
-                'Nama Siswa': s.name,
-                'Area': s.area || '-',
-            };
-            dayNames.forEach((day) => {
-                row[day] = status[`${s.id}-${day}`] || 'belum';
-            });
-            return row;
-        });
+        const exportData = students.map((s) => ({
+            'Nama Siswa': s.name,
+            'Area': s.area || '-',
+            ...dayNames.reduce((acc, day) => {
+                acc[day] = status[`${s.id}-${day}`] || 'belum';
+                return acc;
+            }, {})
+        }));
 
-        exportToExcel(
-            exportData,
-            `Rekap_${title}_${dateStr.replace(/\//g, '-')}`
-        );
+        exportToExcel(exportData, `Rekap_${title}_${dateStr.replace(/\//g, '-')}`);
     };
 
     return (

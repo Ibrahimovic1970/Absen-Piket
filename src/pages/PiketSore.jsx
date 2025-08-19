@@ -1,7 +1,7 @@
 // src/pages/PiketSore.jsx
 import React, { useState } from 'react';
-import AbsensiPiket from '../components/AbsensiPiket';
 import TanggalPicker from '../components/TanggalPicker';
+import AbsensiPiket from '../components/AbsensiPiket';
 
 const PiketSore = () => {
     const [tanggal, setTanggal] = useState(new Date());

@@ -41,7 +41,6 @@ const AbsensiPiket = ({ title, initialStudents, date }) => {
         }
     };
 
-    // Kelompokkan siswa berdasarkan area piket
     const groupedStudents = students.reduce((acc, student) => {
         const area = student.area;
         if (!acc[area]) {
@@ -71,7 +70,6 @@ const AbsensiPiket = ({ title, initialStudents, date }) => {
                 <button onClick={resetAll} className="reset-btn">🗑️ Reset Semua</button>
             </div>
 
-            {/* Tabel Piket */}
             <table className="absensi-table">
                 <thead>
                     <tr>
@@ -85,44 +83,22 @@ const AbsensiPiket = ({ title, initialStudents, date }) => {
                 <tbody>
                     {Object.entries(groupedStudents).map(([area, group]) => (
                         <React.Fragment key={area}>
-                            {/* Header Area */}
                             <tr className="area-header">
                                 <td colSpan={2}>{area}</td>
                                 {daysOfWeek.map(day => (
                                     <td key={day}></td>
                                 ))}
                             </tr>
-                            {/* Data Siswa */}
                             {group.map(student => (
                                 <tr key={student.id}>
                                     <td>{student.name}</td>
                                     <td>{student.area}</td>
                                     {daysOfWeek.map(day => (
                                         <td key={day} className={`status-cell ${status[`${student.id}-${day}`]}`}>
-                                            <button
-                                                className="status-btn"
-                                                onClick={() => updateStatus(student.id, day, '✓')}
-                                            >
-                                                ✓
-                                            </button>
-                                            <button
-                                                className="status-btn"
-                                                onClick={() => updateStatus(student.id, day, '✗')}
-                                            >
-                                                ✗
-                                            </button>
-                                            <button
-                                                className="status-btn"
-                                                onClick={() => updateStatus(student.id, day, 'I')}
-                                            >
-                                                I
-                                            </button>
-                                            <button
-                                                className="status-btn"
-                                                onClick={() => updateStatus(student.id, day, 'S')}
-                                            >
-                                                S
-                                            </button>
+                                            <button onClick={() => updateStatus(student.id, day, '✓')}>✓</button>
+                                            <button onClick={() => updateStatus(student.id, day, '✗')}>✗</button>
+                                            <button onClick={() => updateStatus(student.id, day, 'I')}>I</button>
+                                            <button onClick={() => updateStatus(student.id, day, 'S')}>S</button>
                                         </td>
                                     ))}
                                 </tr>
@@ -135,4 +111,4 @@ const AbsensiPiket = ({ title, initialStudents, date }) => {
     );
 };
 
-export default AbsensiPiket
+export default AbsensiPiket;

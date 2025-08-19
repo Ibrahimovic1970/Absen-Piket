@@ -1,5 +1,6 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import PiketPagi from './pages/PiketPagi';
@@ -9,20 +10,18 @@ import RekapAbsensi from './pages/RekapAbsensi';
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
 
-  // Navigasi manual dengan hash
   const navigate = (page) => {
     setCurrentPage(page);
     window.history.pushState({}, '', `#${page}`);
   };
 
-  // Tangkap navigasi back/forward
   useEffect(() => {
     const handlePop = () => {
       const page = window.location.hash.slice(1) || 'home';
       setCurrentPage(page);
     };
     window.addEventListener('popstate', handlePop);
-    handlePop(); // Inisialisasi halaman
+    handlePop();
     return () => window.removeEventListener('popstate', handlePop);
   }, []);
 
@@ -37,14 +36,16 @@ const App = () => {
   };
 
   return (
-    <div className="app">
-      <Navbar navigate={navigate} />
-      <main className="main-content">
-        <div className="page-transition">
-          {renderPage()}
-        </div>
-      </main>
-    </div>
+    <ThemeProvider>
+      <div className="app">
+        <Navbar navigate={navigate} />
+        <main className="main-content">
+          <div className="page-transition">
+            {renderPage()}
+          </div>
+        </main>
+      </div>
+    </ThemeProvider>
   );
 };
 

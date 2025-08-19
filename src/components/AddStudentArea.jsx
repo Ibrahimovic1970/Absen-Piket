@@ -20,10 +20,9 @@ const AddStudentArea = ({ students, setStudents }) => {
         <form onSubmit={handleSubmit} className="add-student-form">
             <h3>➕ Tambah Siswa</h3>
             <div className="form-group">
-                <label htmlFor="nama-siswa">Nama Siswa</label>
+                <label>Nama Siswa</label>
                 <input
                     type="text"
-                    id="nama-siswa"
                     placeholder="Masukkan Nama Siswa"
                     value={newName}
                     onChange={(e) => setNewName(e.target.value)}
@@ -31,10 +30,9 @@ const AddStudentArea = ({ students, setStudents }) => {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="area-piket">Area Piket</label>
+                <label>Area Piket</label>
                 <input
                     type="text"
-                    id="area-piket"
                     placeholder="Masukkan Area Piket"
                     value={newArea}
                     onChange={(e) => setNewArea(e.target.value)}
